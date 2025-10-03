@@ -5,8 +5,7 @@ Building Data Engineering &amp; Data Science Pipelines with Databricks
 
 This repo includes a production-ready Spark job and a Databricks notebook for schema-applied JSON ingestion and Delta writes.
 
-- Scala app: `1. data-engineering/03-Applying-Schemas-to-JSON-Data-Production.scala`
-- Notebook: `1. data-engineering/03-Applying-Schemas-to-JSON-Data-Production-Notebook.scala`
+- Scala content has been deprecated in favor of Python modules under `python_src/`.
 
 Both versions:
 - Use explicit schemas (no inference) for performance and consistency
@@ -44,6 +43,19 @@ CLI submission:
 databricks jobs create --json-file jobs.apply-schemas.json
 ```
 
-### Run Scala App
+### Run Python Job (spark-submit)
 
-Package and submit the Scala object `ApplySchemasJob` as a JAR task (configure your build accordingly) or run it from a Databricks `%scala` cell by pasting the object code.
+Python modules live under `python_src/data_engineering`.
+
+Example invocation:
+
+```bash
+spark-submit \
+  python_src/data_engineering/jobs/apply_schemas.py \
+  --zips-path <path-to-zips.json> \
+  --show
+```
+
+Notes:
+- Provide a valid JSON path. Avoid `/mnt/training` in restricted workspaces; prefer UC Volumes or `dbfs:/databricks-datasets/`.
+- The job prints schemas and sample rows when `--show` is passed.
