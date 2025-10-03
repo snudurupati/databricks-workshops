@@ -1,0 +1,15 @@
+{
+  "name": "Apply Schemas Production",
+  "tasks": [
+    {
+      "task_key": "apply-schemas",
+      "notebook_task": {
+        "notebook_path": "/Repos/<workspace-path>/databricks-workshops/1. data-engineering/03-Applying-Schemas-to-JSON-Data-Production-Notebook",
+        "source": "WORKSPACE"
+      },
+      "existing_cluster_id": "<cluster-id>"
+    }
+  ]
+}
+
+
